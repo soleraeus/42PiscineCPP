@@ -6,7 +6,7 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 19:04:02 by bdetune           #+#    #+#             */
-/*   Updated: 2022/06/17 19:16:55 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/06/21 13:04:46 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,14 @@ class	Contact
 
 	private:
 
+		const char	*_ws;
 		std::string	_firstName;
 		std::string	_lastName;
 		std::string	_nickname;
 		std::string	_phoneNumber;
 		std::string	_darkestSecret;
-
+		
+		std::string	_trimWhitespaces(std::string str);
 };
 
 #endif
