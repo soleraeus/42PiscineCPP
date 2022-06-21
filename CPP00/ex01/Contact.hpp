@@ -6,7 +6,7 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 19:04:02 by bdetune           #+#    #+#             */
-/*   Updated: 2022/06/21 13:04:46 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/06/21 15:39:31 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,16 @@ class	Contact
 		Contact(void);
 		~Contact(void);
 
-		void	askFirstName(void);
-		void	askLastName(void);
-		void	askNickname(void);
-		void	askPhoneNumber(void);
-		void	askDarkestSecret(void);
+		void		askFirstName(void);
+		void		askLastName(void);
+		void		askNickname(void);
+		void		askPhoneNumber(void);
+		void		askDarkestSecret(void);
+		std::string	getFirstName(void) const;
+		std::string	getLastName(void) const;
+		std::string	getNickname(void) const;
+		std::string	getPhoneNumber(void) const;
+		std::string	getDarkestSecret(void) const;
 
 	private:
 
