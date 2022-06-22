@@ -6,7 +6,7 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 12:06:53 by bdetune           #+#    #+#             */
-/*   Updated: 2022/06/22 13:17:14 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/06/22 16:23:50 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 #include <iostream>
 #include <iomanip>
 #include <ctime>
-#include <chrono>
+#include <locale>
+#include <string>
 
 int	Account::_nbAccounts = 0;
 int	Account::_totalAmount = 0;
@@ -23,12 +24,15 @@ int	Account::_totalNbWithdrawals = 0;
 
 void	Account::_displayTimestamp(void)
 {
-	std::time_t		stamp;
-	struct std::tm	*ptm;
+	std::locale					loc;
+	std::time_t					stamp;
+	std::tm						*ptm;
+	std::string					pattern("[%Y%m%d_%H%M%S] ");
+	const std::time_put<char>	&tmput = std::use_facet <std::time_put<char> > (loc);
 
-	stamp = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+	stamp = std::time(&stamp);
 	ptm = std::localtime(&stamp);
-	std::cout << "[" << std::put_time(ptm, "%Y%m%d_%H%M%S") << "] ";
+	tmput.put(std::cout, std::cout, ' ', ptm, pattern.data(), pattern.data()+pattern.length());	
 }
 
 Account::Account(int initial_deposit): _accountIndex(Account::_nbAccounts), _amount(initial_deposit), _nbDeposits(0), _nbWithdrawals(0)

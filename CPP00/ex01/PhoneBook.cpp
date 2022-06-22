@@ -6,13 +6,13 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:40:54 by bdetune           #+#    #+#             */
-/*   Updated: 2022/06/21 15:52:31 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/06/22 14:51:24 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook(void):_nbContacts(0), _currentIndex(0)
+PhoneBook::PhoneBook(void): _currentIndex(0), _nbContacts(0)
 {
 	return ;
 }
@@ -54,17 +54,17 @@ void	PhoneBook::_displayContact(int index) const
 	std::cout << "Darket secret: " << this->_contacts[index].getDarkestSecret() << std::endl;
 }
 
-void	PhoneBook::searchContact(void)
+void	PhoneBook::searchContact(void) const
 {
 	char		valid;
 	std::string	index;
-	int			index_int;
 
 	if (this->_nbContacts == 0)
 	{
 		std::cout << "No contacts yet" << std::endl;
 		return ;
 	}
+std::cout << std::setw(10) << "INDEX" << "|" << std::setw(10) << "FIRSTNAME" << "|" << std::setw(10) << "LASTNAME" << "|" << std::setw(10) << "NICKNAME" << std::endl;
 	for (int i = 0; i < this->_nbContacts; i++)
 	{
 		std::cout << std::setw(10) << i << "|";
@@ -79,12 +79,12 @@ void	PhoneBook::searchContact(void)
 		std::getline(std::cin, index);
 		if (!std::cin.eof())
 		{
-			if (index.length() != 1 || !std::isdigit(index[0]) || std::stoi(index) < 0 || std::stoi(index) >= this->_nbContacts)
+			if (index.length() != 1 || !std::isdigit(index[0]) || (index[0] - '0') < 0 || (index[0] - '0') >= this->_nbContacts)
 				std::cerr << "Not a valid index" << std::endl;
 			else
 			{
 				valid = 1;
-				this->_displayContact(std::stoi(index));
+				this->_displayContact((index[0] -'0'));
 			}
 		}
 	}	while (!std::cin.eof() && !valid);

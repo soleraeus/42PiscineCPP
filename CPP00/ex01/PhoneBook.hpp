@@ -6,7 +6,7 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:35:43 by bdetune           #+#    #+#             */
-/*   Updated: 2022/06/21 15:47:35 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/06/22 14:51:39 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 # include "Contact.hpp"
 # include <iostream>
 # include <iomanip>
+# include <string>
+#include <cstdlib>
 
 class PhoneBook
 {
@@ -24,7 +26,7 @@ class PhoneBook
 		~PhoneBook(void);
 		
 		void	addContact(void);
-		void	searchContact(void);
+		void	searchContact(void) const;
 	
 	private:
 
