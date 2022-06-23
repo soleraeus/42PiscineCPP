@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/22 19:36:05 by bdetune           #+#    #+#             */
-/*   Updated: 2022/06/23 11:50:11 by bdetune          ###   ########.fr       */
+/*   Created: 2022/06/22 19:17:25 by bdetune           #+#    #+#             */
+/*   Updated: 2022/06/22 19:30:37 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
-#define NB_ZOMBIE 4
+#ifndef ZOMBIE_HPP
+# define ZOMBIE_HPP
+# include <string>
 
-Zombie*	newZombie(std::string name);
-void	randomChump(std::string name);
-
-int	main(void)
+class	Zombie
 {
-	Zombie	*Z;
+	public :
+		Zombie(void);
+		Zombie(std::string name);
+		~Zombie(void);
 
-	for (int i = 0; i < NB_ZOMBIE; i++)
-		randomChump("Harry");
-	for (int i = 0; i < NB_ZOMBIE; i++)
-	{
-		Z = newZombie("Jack");
-		Z->announce();
-		delete Z;
-	}
-	return (0);
-}
+		void		setName(std::string name);
+		std::string	getName(void) const;
+		void		announce(void);
+	
+	private :
+		std::string	_name;
+};
+
+#endif

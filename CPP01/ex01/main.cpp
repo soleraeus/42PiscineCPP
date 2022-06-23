@@ -6,27 +6,41 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 19:36:05 by bdetune           #+#    #+#             */
-/*   Updated: 2022/06/23 11:50:11 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/06/23 11:49:56 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
-#define NB_ZOMBIE 4
+#include <iostream>
+#include <iomanip>
 
-Zombie*	newZombie(std::string name);
-void	randomChump(std::string name);
+Zombie* zombieHorde( int N, std::string name );
+
+void	createAndAnnouceHorde(int N, std::string name)
+{
+	Zombie	*zombieH;
+
+	zombieH = zombieHorde(N, name);
+	if (!zombieH)
+	{
+		std::cout << "Could not create the horde" << std::endl;
+		return ;
+	}
+	std::cout << "Horde created succesfully" << std::endl;
+	for (int i = 0; i < N; i++)
+	{
+		std::cout << i + 1 << " ";
+		zombieH[i].announce();
+	}
+	delete [] zombieH;
+}
 
 int	main(void)
 {
-	Zombie	*Z;
-
-	for (int i = 0; i < NB_ZOMBIE; i++)
-		randomChump("Harry");
-	for (int i = 0; i < NB_ZOMBIE; i++)
-	{
-		Z = newZombie("Jack");
-		Z->announce();
-		delete Z;
-	}
+	createAndAnnouceHorde(-25, "Jack");
+	createAndAnnouceHorde(0, "John");
+	createAndAnnouceHorde(1, "Milly");
+	createAndAnnouceHorde(5, "James");
+	createAndAnnouceHorde(100, "Jesus");
 	return (0);
 }

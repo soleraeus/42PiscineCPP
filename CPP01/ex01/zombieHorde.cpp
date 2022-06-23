@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/22 19:36:05 by bdetune           #+#    #+#             */
-/*   Updated: 2022/06/23 11:50:11 by bdetune          ###   ########.fr       */
+/*   Created: 2022/06/23 11:06:26 by bdetune           #+#    #+#             */
+/*   Updated: 2022/06/23 11:09:39 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
-#define NB_ZOMBIE 4
+#include <iostream>
 
-Zombie*	newZombie(std::string name);
-void	randomChump(std::string name);
-
-int	main(void)
+Zombie*	zombieHorde(int N, std::string name)
 {
-	Zombie	*Z;
+	Zombie	*zombieHorde;
 
-	for (int i = 0; i < NB_ZOMBIE; i++)
-		randomChump("Harry");
-	for (int i = 0; i < NB_ZOMBIE; i++)
+	if (N <= 0)
 	{
-		Z = newZombie("Jack");
-		Z->announce();
-		delete Z;
+		std::cout << "Cannot get a horde of " << N << " Zombies" << std::endl;
+		return (NULL);
 	}
-	return (0);
+	zombieHorde = new Zombie[N];
+	for (int j = 0; j < N; j++)
+		zombieHorde[j].setName(name);
+	return (zombieHorde);
 }
