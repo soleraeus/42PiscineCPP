@@ -6,7 +6,7 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 14:50:16 by bdetune           #+#    #+#             */
-/*   Updated: 2022/06/29 17:28:10 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/06/30 17:59:32 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,20 @@ class	Fixed
 		Fixed	operator-(Fixed const & rhs) const;
 		Fixed	operator*(Fixed const & rhs) const;
 		Fixed	operator/(Fixed const & rhs) const;
+		Fixed &	operator++();
+		Fixed	operator++(int);
+		Fixed &	operator--();
+		Fixed	operator--(int);
 		
 		float	toFloat(void) const;
 		int		toInt(void) const;
 		int		getRawBits(void) const;
 		void	setRawBits(int const raw);
+
+		static Fixed &	min(Fixed & lhs, Fixed & rhs);
+		static Fixed const &	min(Fixed const & lhs, Fixed const & rhs);
+		static Fixed &	max(Fixed & lhs, Fixed & rhs);
+		static Fixed const &	max(Fixed const & lhs, Fixed const & rhs);
 
 	private :
 
