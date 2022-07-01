@@ -6,14 +6,14 @@
 #    By: bdetune <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/22 13:18:57 by bdetune           #+#    #+#              #
-#    Updated: 2022/06/29 16:35:26 by bdetune          ###   ########.fr        #
+#    Updated: 2022/07/01 13:22:16 by bdetune          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME= fixed
 
-SRCS= main.cpp Fixed.cpp
-INC=  Fixed.hpp
+SRCS= main.cpp Fixed.cpp Point.cpp bsp.cpp
+INC=  Fixed.hpp Point.hpp
 OBJS:= $(SRCS:.cpp=.o)
 
 CPP= c++
