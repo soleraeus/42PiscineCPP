@@ -6,11 +6,11 @@
 #    By: bdetune <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/22 13:18:57 by bdetune           #+#    #+#              #
-#    Updated: 2022/07/01 13:22:16 by bdetune          ###   ########.fr        #
+#    Updated: 2022/07/01 16:39:22 by bdetune          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME= fixed
+NAME= bsp
 
 SRCS= main.cpp Fixed.cpp Point.cpp bsp.cpp
 INC=  Fixed.hpp Point.hpp

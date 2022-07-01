@@ -6,7 +6,7 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:12:52 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/01 16:10:17 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/01 16:54:04 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ Point	Point::operator-(Point const & rhs) const
 	Fixed	x(this->getX() - rhs.getX());
 	Fixed	y(this->getY() - rhs.getY());
 
-	std::cerr << "in func " << x << ";" << y << std::endl; 
 	return (Point(x, y));
 }
 
