@@ -6,7 +6,7 @@
 /*   By: bdetune <bdetune@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 18:38:05 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/01 13:47:00 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/01 16:06:24 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ class	Point
 
 		Point &	operator=(Point const & rhs);
 		Point	operator-(Point const & rhs) const;
+		Fixed	operator*(Point const & rhs) const;
 
 		Fixed	getX(void) const;
 		Fixed	getY(void) const;
