@@ -6,7 +6,7 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 17:42:15 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/04 13:55:01 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/04 14:07:18 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	ClapTrap::beRepaired(unsigned int amount)
 		std::cout << "ClapTrap " << (this->_name[0] ? this->_name : "unnamed") << " wants to repair itself but it has no energy left" << std::endl;
 		return ;
 	}
-	this->_hitPoints = (amount > 10 || this->_hitPoints + amount > 10) ? 10 : this->_hitPoints + amount;
+	this->_hitPoints = this->_hitPoints + amount;
 	this->_energyPoints -= 1;
 	std::cout << "ClapTrap " << (this->_name[0] ? this->_name : "unnamed") << " repaired itself for " << amount << " points. It now has " << this->_hitPoints << " hit points." << std::endl;
 	return ;

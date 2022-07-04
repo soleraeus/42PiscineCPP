@@ -6,7 +6,7 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 17:17:26 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/04 13:55:25 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/04 13:59:57 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class	ClapTrap
 		void	takeDamage(unsigned int amount);
 		void	beRepaired(unsigned int	amount);
 
-	private :
+	protected :
 		std::string		_name;
 		unsigned int	_hitPoints;
 		unsigned int	_energyPoints;
