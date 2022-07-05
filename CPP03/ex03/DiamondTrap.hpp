@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 13:59:09 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/05 13:04:43 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/05 13:34:07 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAP_HPP
-# define SCAVTRAP_HPP
-# include "ClapTrap.hpp"
+#ifndef DIAMONDTRAP_HPP
+# define DIAMONDTRAP_HPP
+# include "ScavTrap.hpp"
+# include "FragTrap.hpp"
 
-class	ScavTrap: public virtual ClapTrap
+class	DiamondTrap: public ScavTrap, public FragTrap
 {
 	public :
-		ScavTrap(void);
-		ScavTrap(std::string const & name);
-		ScavTrap(ScavTrap const & src);
-		ScavTrap & operator=(ScavTrap const & rhs);
-		~ScavTrap(void);
+		DiamondTrap(void);
+		DiamondTrap(std::string const & name);
+		DiamondTrap(DiamondTrap const & src);
+		DiamondTrap & operator=(DiamondTrap const & rhs);
+		~DiamondTrap(void);
 
-		void	attack(const std::string & target);
-		void	attack(ClapTrap & target);
-		void	guardGate(void);
+		using FragTrap::_hitPoints;
+		using ScavTrap::_energyPoints;
+		using FragTrap::_attackDamage;
+		using ScavTrap::attack;
+//	private :
+//		std::string	_name;
 };
 
 #endif

@@ -6,18 +6,18 @@
 #    By: bdetune <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/22 13:18:57 by bdetune           #+#    #+#              #
-#    Updated: 2022/07/05 12:49:13 by bdetune          ###   ########.fr        #
+#    Updated: 2022/07/05 13:16:34 by bdetune          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME= FragTrap
+NAME= DiamondTrap
 
-SRCS= main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
-INC=  ClapTrap.hpp ScavTrap.hpp FragTrap.hpp
+SRCS= main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
+INC=  ClapTrap.hpp ScavTrap.hpp FragTrap.hpp DiamondTrap.hpp
 OBJS:= $(SRCS:.cpp=.o)
 
 CPP= c++
-CPPFLAGS= -Wall -Wextra -Werror -std=c++98
+CPPFLAGS= -Wall -Wextra -Werror -Wshadow -std=c++98
 
 ${NAME}:	$(OBJS) $(INC)
 			$(CPP) $(CPPFLAGS) -o $(NAME) $(OBJS)

@@ -6,7 +6,7 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 13:59:09 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/05 12:54:09 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/05 13:04:57 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FRAGTRAP_HPP
 # include "ClapTrap.hpp"
 
-class	FragTrap: public ClapTrap
+class	FragTrap: public virtual ClapTrap
 {
 	public :
 		FragTrap(void);

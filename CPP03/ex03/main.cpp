@@ -6,12 +6,11 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 12:48:33 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/05 12:53:21 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/05 13:37:26 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FragTrap.hpp"
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int	main(void)
 {
@@ -90,7 +89,7 @@ int	main(void)
 
 //	FragTrap	Frag2(std::string("John"));
 
-	FragTrap	Frag1;
+/*	FragTrap	Frag1;
 	FragTrap	Frag2(std::string("John"));
 	FragTrap	Frag3(std::string("Harry"));
 	FragTrap	Frag4 = Frag2;
@@ -122,7 +121,13 @@ int	main(void)
 	Frag4.attack(Frag3);
 	Frag3.attack(Frag2);
 	Frag4.beRepaired(2);
-	Frag4.highFivesGuys();
+	Frag4.highFivesGuys();*/
 
+	DiamondTrap	Diamond1;
+	DiamondTrap	Diamond2(std::string("John"));
+//	FragTrap	Frag3(std::string("Harry"));
+	DiamondTrap	Diamond4 = Diamond2;
+
+	Diamond2.attack(std::string("Lola"));
 	return (0);
 }
