@@ -6,7 +6,7 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 17:42:15 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/05 12:48:20 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/05 12:37:49 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,6 @@ void	ScavTrap::attack(ClapTrap & target)
 
 void	ScavTrap::guardGate(void)
 {
-	std::cout << "ScavTrap " << (this->_name[0] ? this->_name : "unnamed") << " has entered Gate keeper mode" << std::endl;
+	std::cout << "ScavTrap " << this->_name << " has entered Gate keeper mode" << std::endl;
 	return ;
 }
