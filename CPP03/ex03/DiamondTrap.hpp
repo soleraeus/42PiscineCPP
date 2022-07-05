@@ -6,7 +6,7 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 13:59:09 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/05 13:34:07 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/05 19:35:27 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include "ScavTrap.hpp"
 # include "FragTrap.hpp"
 
-class	DiamondTrap: public ScavTrap, public FragTrap
+class	DiamondTrap: public virtual ScavTrap, public virtual FragTrap
 {
 	public :
 		DiamondTrap(void);
@@ -24,12 +24,12 @@ class	DiamondTrap: public ScavTrap, public FragTrap
 		DiamondTrap & operator=(DiamondTrap const & rhs);
 		~DiamondTrap(void);
 
-		using FragTrap::_hitPoints;
-		using ScavTrap::_energyPoints;
-		using FragTrap::_attackDamage;
+		void	whoAmI(void);
+
 		using ScavTrap::attack;
-//	private :
-//		std::string	_name;
+
+	private :
+		std::string	_name;
 };
 
 #endif
