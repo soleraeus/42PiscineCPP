@@ -6,7 +6,7 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 19:36:05 by bdetune           #+#    #+#             */
-/*   Updated: 2022/06/23 11:50:11 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/06 15:40:48 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,11 @@ int	main(void)
 	for (int i = 0; i < NB_ZOMBIE; i++)
 	{
 		Z = newZombie("Jack");
-		Z->announce();
-		delete Z;
+		if (Z)
+		{
+			Z->announce();
+			delete Z;
+		}
 	}
 	return (0);
 }

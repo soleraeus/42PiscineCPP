@@ -6,13 +6,14 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 19:36:05 by bdetune           #+#    #+#             */
-/*   Updated: 2022/06/23 11:49:56 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/06 15:12:43 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 #include <iostream>
 #include <iomanip>
+#include <limits>
 
 Zombie* zombieHorde( int N, std::string name );
 
@@ -22,10 +23,7 @@ void	createAndAnnouceHorde(int N, std::string name)
 
 	zombieH = zombieHorde(N, name);
 	if (!zombieH)
-	{
-		std::cout << "Could not create the horde" << std::endl;
 		return ;
-	}
 	std::cout << "Horde created succesfully" << std::endl;
 	for (int i = 0; i < N; i++)
 	{
@@ -42,5 +40,6 @@ int	main(void)
 	createAndAnnouceHorde(1, "Milly");
 	createAndAnnouceHorde(5, "James");
 	createAndAnnouceHorde(100, "Jesus");
+	createAndAnnouceHorde(std::numeric_limits<int>::max(), "GOD");
 	return (0);
 }

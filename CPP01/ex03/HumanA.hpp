@@ -6,13 +6,13 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 13:41:39 by bdetune           #+#    #+#             */
-/*   Updated: 2022/06/24 13:51:32 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/06 15:44:11 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HUMANA_HPP
 # define HUMANA_HPP
-#include <iostream>
+# include <iostream>
 # include "Weapon.hpp"
 
 class	HumanA
