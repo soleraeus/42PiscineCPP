@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/08 12:41:33 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/08 17:32:54 by bdetune          ###   ########.fr       */
+/*   Created: 2022/07/08 17:41:05 by bdetune           #+#    #+#             */
+/*   Updated: 2022/07/08 18:20:35 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef BRAIN_HPP
+# define BRAIN_HPP
+# include <string>
 # include <iostream>
 
-class	Animal
+class	Brain
 {
 	public :
-		Animal(void);
-		Animal(Animal const & src);
-		virtual	~Animal(void);
+		Brain(void);
+		Brain(Brain const & src);
+		virtual ~Brain(void);
 
-		virtual Animal &	operator=(Animal const & rhs);
+		virtual Brain & operator=(Brain const & rhs);
 
-		std::string const &	getType(void) const;
+		bool	addIdea(std::string const & idea);
+		std::string *getIdeas(void) const;
+		std::string *removeIdea(void);
+		int		getNbIdeas(void) const;
 
-		virtual void	makeSound(void) const;
-
-	protected :
-		std::string	type;
+	private :
+		std::string	ideas[100];
+		int			_nbIdeas;
 };
 
 #endif

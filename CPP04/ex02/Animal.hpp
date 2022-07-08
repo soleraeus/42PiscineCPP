@@ -6,7 +6,7 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:41:33 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/08 17:32:54 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/08 19:04:18 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class	Animal
 
 		std::string const &	getType(void) const;
 
-		virtual void	makeSound(void) const;
+		virtual void	makeSound(void) const = 0;
 
 	protected :
 		std::string	type;
