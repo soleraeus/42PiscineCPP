@@ -6,7 +6,7 @@
 /*   By: bdetune <bdetune@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 19:49:46 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/12 12:32:19 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/12 12:32:03 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,19 @@ void Bureaucrat::demote(void)
 		throw Bureaucrat::GradeTooLowException();
 	else
 		this->_grade += 1;
+}
+
+void	Bureaucrat::signForm(Form& target)
+{
+	try
+	{
+		target.beSigned(*this);
+		std::cout << *this << " signed form " << target.getName() << std::endl;
+	}
+	catch (Form::GradeTooLowException const & e)
+	{
+		std::cout << *this << " couldn't sign form " << target.getName() << " because his grade is too low. Form requires grade " << target.getSignGrade() << " to be signed." << std::endl;
+	}
 }
 
 const char*	Bureaucrat::GradeTooHighException::what(void) const throw()
