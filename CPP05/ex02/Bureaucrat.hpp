@@ -6,7 +6,7 @@
 /*   By: bdetune <bdetune@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 19:38:43 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/12 11:55:40 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/13 13:46:13 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ class	Bureaucrat
 		void				promote(void);
 		void				demote(void);
 		void				signForm(Form& target);
+		void				executeForm(Form const & form);
 	
 		class GradeTooHighException : public std::exception
 		{

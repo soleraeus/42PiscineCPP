@@ -6,7 +6,7 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 11:32:42 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/12 12:06:54 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/13 13:50:49 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,16 @@ void	Form::beSigned(Bureaucrat const & target)
 		this->_signed = true;
 }
 
+void	Form::execute(Bureaucrat const & executor) const
+{
+	if (!this->getSigned())
+		throw Form::FormNotSignedException();
+	else if (executor.getGrade() > this->getExecGrade())
+		throw Form::GradeTooLowException();
+	else
+		this->act();
+}
+
 char const*	Form::GradeTooHighException::what(void) const throw()
 {
 	return ("Entered grade is too high, if you are trying to init a form nobody will be able to use it (thank you administration)");
@@ -74,6 +84,11 @@ char const*	Form::GradeTooHighException::what(void) const throw()
 char const*	Form::GradeTooLowException::what(void) const throw()
 {
 	return ("Entered grade is too low, if you are trying to init a form everyone will be able to use it since this grade is not in the scales (go ride your pony in fairytales), if you are trying to sign or execute a form go ask your boss");
+}
+
+char const*	Form::FormNotSignedException::what(void) const throw()
+{
+	return ("Cannot execute a form that has not been signed");
 }
 
 std::ostream&	operator<<(std::ostream& o, Form const & rhs)

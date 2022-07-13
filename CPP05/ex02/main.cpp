@@ -6,22 +6,26 @@
 /*   By: bdetune <bdetune@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 20:02:05 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/12 12:30:33 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/13 14:27:24 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
 void	createAndSign(Bureaucrat * myBureaucrat)
 {
 	Form	*myForm;
+	PresidentialPardonForm	pardon(std::string("Emily"));
+	PresidentialPardonForm	pardon2(std::string("Jack"));
+	RobotomyRequestForm		robotomy(std::string("Bender"));
 
 	(void) myBureaucrat;
 
 	try
 	{
-		myForm = new Form(std::string("Useless"), 151, 151);
+		myForm = new PresidentialPardonForm(std::string("John"));
 	}
 	catch (std::exception & e)
 	{
@@ -30,71 +34,23 @@ void	createAndSign(Bureaucrat * myBureaucrat)
 	}
 	if (myForm != NULL)
 	{
-		try
-		{
-			myBureaucrat->signForm(*myForm);
-		}
-		catch (std::exception & e){}
+		myBureaucrat->signForm(*myForm);
 		delete myForm;
 	}
-	try
+	myBureaucrat->signForm(pardon);
+	myBureaucrat->executeForm(pardon);
+	while (myBureaucrat->getGrade() > 5)
+		myBureaucrat->promote();
+	myBureaucrat->executeForm(pardon);
+	myBureaucrat->executeForm(pardon2);
+	pardon2 = pardon;
+	myBureaucrat->executeForm(pardon2);
+	myBureaucrat->executeForm(robotomy);
+	myBureaucrat->signForm(robotomy);
+	for (int i = 0; i < 10; i++)
 	{
-		myForm = new Form(std::string("Useless"), 0, 151);
+		myBureaucrat->executeForm(robotomy);
 	}
-	catch (std::exception & e)
-	{
-		std::cerr << "Exception while creating new Form: " << e.what() << std::endl;
-		myForm = NULL;
-	}
-	if (myForm != NULL)
-	{
-		try
-		{
-			myBureaucrat->signForm(*myForm);
-		}
-		catch (std::exception & e){}
-		delete myForm;
-	}
-	try
-	{
-		myForm = new Form(std::string("Useless"), 19, 5);
-	}
-	catch (std::exception & e)
-	{
-		std::cerr << "Exception while creating new Form: " << e.what() << std::endl;
-		myForm = NULL;
-	}
-	if (myForm != NULL)
-	{
-		try
-		{
-			myBureaucrat->signForm(*myForm);
-		}
-		catch (std::exception & e){}
-		delete myForm;
-	}
-	try
-	{
-		myForm = new Form(std::string("Useless2"), 20, 5);
-	}
-	catch (std::exception & e)
-	{
-		std::cerr << "Exception while creating new Form: " << e.what() << std::endl;
-		myForm = NULL;
-	}
-	if (myForm != NULL)
-	{
-		try
-		{
-			myBureaucrat->signForm(*myForm);
-			std::cout << *myForm << std::endl;
-		}
-		catch (std::exception & e){}
-		delete myForm;
-	}
-
-
-
 }
 
 int main(void)

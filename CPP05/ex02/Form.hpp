@@ -6,7 +6,7 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 11:21:59 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/12 12:02:05 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/13 13:50:37 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,16 @@ class	Form
 	public :
 		Form(std::string const & name, int const signGrade, int const execGrade);
 		Form(Form const & src);
-		~Form(void);
+		virtual	~Form(void);
 
-		Form &	operator=(Form const & rhs);
+		virtual	Form &	operator=(Form const & rhs);
 
 		std::string const &	getName(void) const;
 		int					getSignGrade(void) const;
 		int					getExecGrade(void) const;
 		bool				getSigned(void) const;
 		void				beSigned(Bureaucrat const & target);
+		void				execute(Bureaucrat const & executor) const;
 
 		class	GradeTooLowException: public std::exception
 		{
@@ -41,6 +42,15 @@ class	Form
 		{
 			virtual const char *	what() const throw();
 		};
+
+		class	FormNotSignedException: public std::exception
+		{
+			virtual const char *	what() const throw();
+		};
+
+	protected :
+		virtual void		act() const = 0;
+
 	
 	private :
 		std::string const	_name;
