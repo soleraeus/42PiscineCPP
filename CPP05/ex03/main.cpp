@@ -6,11 +6,12 @@
 /*   By: bdetune <bdetune@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 20:02:05 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/13 14:56:11 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/13 16:08:46 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Intern.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
@@ -22,6 +23,7 @@ void	createAndSign(Bureaucrat * myBureaucrat)
 	PresidentialPardonForm	pardon2(std::string("Jack"));
 	RobotomyRequestForm		robotomy(std::string("Bender"));
 	ShrubberyCreationForm	bush(std::string("Jonas"));
+	Intern					uselessIntern;
 
 	(void) myBureaucrat;
 
@@ -56,6 +58,29 @@ void	createAndSign(Bureaucrat * myBureaucrat)
 	myBureaucrat->signForm(bush);
 	myBureaucrat->executeForm(bush);
 	myBureaucrat->executeForm(bush);
+	myForm = uselessIntern.makeForm(std::string("doesn't exist"), std::string("Bella"));
+	if (myForm)
+	{
+		myBureaucrat->signForm(*myForm);
+		myBureaucrat->executeForm(*myForm);
+		delete myForm;
+	}
+	myForm = uselessIntern.makeForm(std::string("Presidential Pardon"), std::string("Roger"));
+	if (myForm)
+	{
+		myBureaucrat->signForm(*myForm);
+		myBureaucrat->executeForm(*myForm);
+		delete myForm;
+	}
+	myForm = uselessIntern.makeForm(std::string("ROBOTOMY REQUEST"), std::string("C-3PO"));
+	if (myForm)
+	{
+		myBureaucrat->signForm(*myForm);
+		myBureaucrat->executeForm(*myForm);
+		delete myForm;
+	}
+
+
 }
 
 int main(void)

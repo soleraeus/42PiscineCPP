@@ -6,14 +6,14 @@
 #    By: bdetune <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/22 13:18:57 by bdetune           #+#    #+#              #
-#    Updated: 2022/07/13 14:49:44 by bdetune          ###   ########.fr        #
+#    Updated: 2022/07/13 15:43:37 by bdetune          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME= bureaucrats
 
-SRCS= main.cpp Bureaucrat.cpp Form.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp
-INC=  Bureaucrat.hpp Form.hpp PresidentialPardonForm.hpp RobotomyRequestForm.hpp ShrubberyCreationForm.hpp
+SRCS= main.cpp Bureaucrat.cpp Form.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp Intern.cpp
+INC=  Bureaucrat.hpp Form.hpp PresidentialPardonForm.hpp RobotomyRequestForm.hpp ShrubberyCreationForm.hpp Intern.hpp
 OBJS:= $(SRCS:.cpp=.o)
 
 CPP= c++
