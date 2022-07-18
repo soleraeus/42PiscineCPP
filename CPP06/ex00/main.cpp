@@ -6,7 +6,7 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:28:04 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/13 20:13:22 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/18 12:02:19 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 #include <locale>
 #include <iomanip>
 #include <string>
+#include <cmath>
+#include <string>
+#include <cstdlib>
 
 void	print_char(char c)
 {
@@ -24,15 +27,16 @@ void	print_char(char c)
 		std::cout << "char:   '" << c << "'" << std::endl;
 }
 
-void	handle_char(char param)
+int	handle_char(char param)
 {
 	print_char(param);
 	std::cout << "int:    " << static_cast<int>(param) << std::endl;
-	std::cout << "float:  " << static_cast<float>(param) << ".0f" << std::endl;
-	std::cout << "double: " << static_cast<double>(param) << ".0" << std::endl;
+	std::cout << "float:  "  <<static_cast<float>(param) << "f" << std::endl;
+	std::cout << "double: " << static_cast<double>(param) << std::endl;
+	return (0);
 }
 
-void	handle_float(std::string param)
+int	handle_float(std::string param)
 {
 	int		i;
 	int		pointI;
@@ -54,7 +58,7 @@ void	handle_float(std::string param)
 		if (!std::isdigit(param[j], std::locale()))
 			error = true;
 	}
-	for (int j = (pointI + 1); j < (param.length() - 1); j++)
+	for (int j = (pointI + 1); j < (static_cast<int>(param.length()) - 1); j++)
 	{
 		if (!std::isdigit(param[j], std::locale()))
 			error = true;
@@ -62,23 +66,24 @@ void	handle_float(std::string param)
 	if (error)
 	{
 		std::cerr << "Improper float formatting given" << std::endl;
-		return ;
+		return (1);
 	}
-	base = std::stof(param);
+	base = std::strtof(param.data(), (param.data() + param.length()));
 	if (base < -128 || base > 127)
 		std::cout << "char:   impossible" << std::endl;
 	else
 		print_char(static_cast<char>(base));
 	if (static_cast<float>(std::numeric_limits<int>::max()) < base
 		|| static_cast<float>(std::numeric_limits<int>::min()) > base)
-		std::cout << "int:    overflow detected" << std::endl;
+		std::cout << "int:    impossible" << std::endl;
 	else
 		std::cout << "int:    " << static_cast<int>(base) << std::endl;
 	std::cout << "float:  " << base << "f" << std::endl;
 	std::cout << "double: " << static_cast<double>(base) << std::endl;
+	return (0);
 }
 
-void	handle_double(std::string param)
+int	handle_double(std::string param)
 {
 	int		i;
 	int		pointI;
@@ -108,27 +113,28 @@ void	handle_double(std::string param)
 	if (error)
 	{
 		std::cerr << "Improper double formatting given" << std::endl;
-		return ;
+		return (1);
 	}
-	base = std::stod(param);
+	base = std::strtod(param.data(), (param.data() + param.length()));
 	if (base < -128 || base > 127)
 		std::cout << "char:   impossible" << std::endl;
 	else
 		print_char(static_cast<char>(base));
 	if (static_cast<double>(std::numeric_limits<int>::max()) < base
 		|| static_cast<double>(std::numeric_limits<int>::min()) > base)
-		std::cout << "int:    overflow detected" << std::endl;
+		std::cout << "int:    impossible" << std::endl;
 	else
 		std::cout << "int:    " << static_cast<int>(base) << std::endl;
 	if (static_cast<double>(std::numeric_limits<float>::max()) < base
-		|| static_cast<double>(std::numeric_limits<float>::min()) > base)
-		std::cout << "float:  overflow detected" << std::endl;
+		|| static_cast<double>(-std::numeric_limits<float>::max()) > base)
+		std::cout << "float:  impossible" << std::endl;
 	else
 		std::cout << "float:  " << static_cast<float>(base) << "f" << std::endl;
 	std::cout << "double: " << base << std::endl;
+	return (0);
 }
 
-void	handle_int(std::string param)
+int	handle_int(std::string param)
 {
 	int		i = 0;
 	bool	error = false;
@@ -144,9 +150,9 @@ void	handle_int(std::string param)
 	if (error)
 	{
 		std::cerr << "Improper integer formatting given" << std::endl;
-		return ;
+		return (1);
 	}
-	base = std::stoi(param);
+	base = std::strtoi(param.data(), (param.data() + param.length()));
 	if (base < -128 || base > 127)
 		std::cout << "char:   impossible" << std::endl;
 	else
@@ -154,17 +160,20 @@ void	handle_int(std::string param)
 	std::cout << "int:    " << base << std::endl;
 	std::cout << "float:  " << static_cast<float>(base) << "f" << std::endl;
 	std::cout << "double: " << static_cast<double>(base) << std::endl;
+	return (0);
 }
 
-void	handle_numbers(std::string param)
+int	handle_numbers(std::string param)
 {
+	int	ret = 0;
+
 	if (param == std::string("-inff") || param == std::string("-inf"))
 	{
 		std::cout << "char:   impossible" << std::endl;
 		std::cout << "int:    impossible" << std::endl;
 		std::cout << "float:  -inff" << std::endl;
 		std::cout << "double: -inf" << std::endl;
-		return ;	
+		return (0);	
 	}
 	if (param == std::string("+inff") || param == std::string("+inf"))
 	{
@@ -172,7 +181,7 @@ void	handle_numbers(std::string param)
 		std::cout << "int:    impossible" << std::endl;
 		std::cout << "float:  +inff" << std::endl;
 		std::cout << "double: +inf" << std::endl;
-		return ;	
+		return (0);	
 	}
 	if (param == std::string("nan") || param == std::string("nanf"))
 	{
@@ -180,14 +189,23 @@ void	handle_numbers(std::string param)
 		std::cout << "int:    impossible" << std::endl;
 		std::cout << "float:  nanf" << std::endl;
 		std::cout << "double: nan" << std::endl;
-		return ;	
+		return (0);	
 	}
-	if (param[param.length() - 1] == 'f')
-		handle_float(param);
-	else if (param.find_first_of(".") != std::string::npos)
-		handle_double(param);
-	else
-		handle_int(param);
+	try
+	{
+		if (param[param.length() - 1] == 'f')
+			return (handle_float(param));
+		else if (param.find_first_of(".") != std::string::npos)
+			return (handle_double(param));
+		else
+			return (handle_int(param));
+	}
+	catch (std::exception const & e)
+	{
+		std::cerr << "Improper formatting of argument passed, exception raised: " << e.what() << std::endl;
+		return (1);
+	}
+	return (0);
 }
 
 int	main(int ac, char **av)
@@ -200,13 +218,12 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	param = av[1];
+	std::cout  << std::fixed << std::setprecision(1);
 	if (param.length() == 1)
 	{
 		if (!std::isdigit(param[0]))
-			handle_char(param[0]);
-		else
-			handle_numbers(param);	
-		return (0);
+			return (handle_char(param[0]));
+		return (handle_numbers(param));	
 	}
 	else
 	{
@@ -219,12 +236,8 @@ int	main(int ac, char **av)
 		}
 		param = param.substr(begin, (end - begin + 1));
 		if (param.length() == 1 && !std::isdigit(param[0]))
-		{
-			handle_char(param[0]);
-			return (0);
-		}
-		else
-			handle_numbers(param);
+			return (handle_char(param[0]));
+		return (handle_numbers(param));
 	}
 	return (0);
 }
