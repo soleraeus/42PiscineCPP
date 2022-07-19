@@ -6,7 +6,7 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:28:04 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/18 12:02:19 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/19 12:40:17 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	handle_float(std::string param)
 		std::cerr << "Improper float formatting given" << std::endl;
 		return (1);
 	}
-	base = std::strtof(param.data(), (param.data() + param.length()));
+	base = std::strtof(param.data(), NULL);
 	if (base < -128 || base > 127)
 		std::cout << "char:   impossible" << std::endl;
 	else
@@ -105,7 +105,7 @@ int	handle_double(std::string param)
 		if (!std::isdigit(param[j], std::locale()))
 			error = true;
 	}
-	for (int j = (pointI + 1); j < param.length(); j++)
+	for (int j = (pointI + 1); j < static_cast<int>(param.length()); j++)
 	{
 		if (!std::isdigit(param[j], std::locale()))
 			error = true;
@@ -115,7 +115,7 @@ int	handle_double(std::string param)
 		std::cerr << "Improper double formatting given" << std::endl;
 		return (1);
 	}
-	base = std::strtod(param.data(), (param.data() + param.length()));
+	base = std::strtod(param.data(), NULL);
 	if (base < -128 || base > 127)
 		std::cout << "char:   impossible" << std::endl;
 	else
@@ -142,7 +142,7 @@ int	handle_int(std::string param)
 
 	if (param[0] == '+' || param[0] == '-')
 		i = 1;
-	for (int j = i; j < param.length(); j++)
+	for (int j = i; j < static_cast<int>(param.length()); j++)
 	{
 		if (!std::isdigit(param[j], std::locale()))
 			error = true;
@@ -152,7 +152,7 @@ int	handle_int(std::string param)
 		std::cerr << "Improper integer formatting given" << std::endl;
 		return (1);
 	}
-	base = std::strtoi(param.data(), (param.data() + param.length()));
+	base = std::atoi(param.data());
 	if (base < -128 || base > 127)
 		std::cout << "char:   impossible" << std::endl;
 	else
@@ -165,8 +165,6 @@ int	handle_int(std::string param)
 
 int	handle_numbers(std::string param)
 {
-	int	ret = 0;
-
 	if (param == std::string("-inff") || param == std::string("-inf"))
 	{
 		std::cout << "char:   impossible" << std::endl;
