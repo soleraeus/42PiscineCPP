@@ -6,14 +6,14 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 14:50:16 by bdetune           #+#    #+#             */
-/*   Updated: 2022/06/30 17:59:32 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/20 13:34:06 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FIXED_HPP
 # define FIXED_HPP
-#include <iostream>
-#include <cmath>
+# include <iostream>
+# include <cmath>
 
 class	Fixed
 {

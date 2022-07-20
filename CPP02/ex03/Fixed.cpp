@@ -6,7 +6,7 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 14:57:28 by bdetune           #+#    #+#             */
-/*   Updated: 2022/06/30 18:08:23 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/20 13:35:21 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ Fixed::Fixed(void): _rawBits(0)
 	return ;
 }
 
-Fixed::Fixed(const int nb): _rawBits(nb << Fixed::_pointPosition)
+Fixed::Fixed(const int nb): _rawBits((1 << Fixed::_pointPosition)* nb)
 {
 	return ;
 }
@@ -139,7 +139,7 @@ float	Fixed::toFloat(void) const
 
 int	Fixed::toInt(void) const
 {
-	return (this->_rawBits >> Fixed::_pointPosition);
+	return (this->_rawBits / (1 << Fixed::_pointPosition));
 }
 
 int	Fixed::getRawBits(void) const

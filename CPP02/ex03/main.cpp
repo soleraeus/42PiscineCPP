@@ -6,7 +6,7 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 16:33:07 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/01 16:56:13 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/20 13:49:02 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ int	main(void)
 
 	//Flat triangle
 	if (bsp(Point(0, 0), Point(0, 0), Point(1, 0), Point(0.5, 0)))
-		std::cout << "Point " << Point(0.5, 0) << " is in triangle with edges A: " << Point(0, 0) << ", B: " << Point(1, 1) << ", C: " << Point(1, 0) << std::endl;
+		std::cout << "Point " << Point(0.5, 0) << " is in triangle with edges A: " << Point(0, 0) << ", B: " << Point(0, 0) << ", C: " << Point(1, 0) << std::endl;
 	else
-		std::cout << "Point " << Point(0.5, 0) << " is NOT in triangle with edges A: " << Point(0, 0) << ", B: " << Point(1, 1) << ", C: " << Point(1, 0) << std::endl;
+		std::cout << "Point " << Point(0.5, 0) << " is NOT in triangle with edges A: " << Point(0, 0) << ", B: " << Point(0, 0) << ", C: " << Point(1, 0) << std::endl;
 
 	//Borderline but in
 	if (bsp(Point(0, 0), Point(1, 1), Point(1, 0), Point(0.99, 0.5)))
