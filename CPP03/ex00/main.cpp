@@ -6,7 +6,7 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 12:48:33 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/04 13:55:38 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/20 17:25:42 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	main(void)
 	Clap2.takeDamage(400);
 	Clap4.attack(Clap3);
 	Clap4.attack(Clap3);
+	Clap2.attack(Clap3);
 	Clap4.beRepaired(2);
 
 	return (0);

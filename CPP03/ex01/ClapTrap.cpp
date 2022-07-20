@@ -6,7 +6,7 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 17:42:15 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/05 12:37:20 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/20 17:32:15 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,17 @@ void	ClapTrap::attack(const std::string & target)
 
 void	ClapTrap::attack(ClapTrap & target)
 {
-	this->attack(target._name);
+	if (this->_hitPoints == 0)
+	{
+		std::cout << "ClapTrap " << (this->_name[0] ? this->_name : "unnamed") << " wants to attack but it is dead" << std::endl;
+		return ;
+	}
+	if (this->_energyPoints == 0)
+	{
+		std::cout << "ClapTrap " << (this->_name[0] ? this->_name : "unnamed") << " wants to attack but it has no energy left" << std::endl;
+		return ;
+	}
+	this->attack((target._name[0] ? target._name : std::string("unnamed")));
 	target.takeDamage(this->_attackDamage);
 	return ;
 }
@@ -97,7 +107,7 @@ void	ClapTrap::beRepaired(unsigned int amount)
 		std::cout << "ClapTrap " << (this->_name[0] ? this->_name : "unnamed") << " wants to repair itself but it has no energy left" << std::endl;
 		return ;
 	}
-	this->_hitPoints = this->_hitPoints + amount;
+	this->_hitPoints += amount;
 	this->_energyPoints -= 1;
 	std::cout << "ClapTrap " << (this->_name[0] ? this->_name : "unnamed") << " repaired itself for " << amount << " points. It now has " << this->_hitPoints << " hit points." << std::endl;
 	return ;
@@ -105,5 +115,5 @@ void	ClapTrap::beRepaired(unsigned int amount)
 
 std::string	ClapTrap::getName(void) const
 {
-	return (this->_name);
+	return ((this->_name[0] ? this->_name : "unnamed"));
 }
