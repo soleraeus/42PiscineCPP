@@ -6,7 +6,7 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 13:59:09 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/05 19:19:28 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/21 12:11:59 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ class	FragTrap: public virtual ClapTrap
 		FragTrap & operator=(FragTrap const & rhs);
 		~FragTrap(void);
 
-		void	attack(const std::string & target);
-		void	attack(ClapTrap & target);
 		void	highFivesGuys(void);
 };
 
