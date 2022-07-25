@@ -6,7 +6,7 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 13:00:43 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/25 12:06:30 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/25 15:30:54 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 
 Character::Character(void): _name(std::string("unnamed"))
 {
+	for (int i = 0; i < 4; i++)
+	{
+		this->_materias[i] = NULL;
+	}
 	return ;
 }
 
