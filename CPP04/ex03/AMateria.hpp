@@ -6,7 +6,7 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 10:42:15 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/11 13:32:53 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/25 11:36:15 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ class	ICharacter;
 class	AMateria
 {
 	public :
+		AMateria(void);
 		AMateria(std::string const & type);
 		AMateria(AMateria const & src);
 		virtual ~AMateria(void);

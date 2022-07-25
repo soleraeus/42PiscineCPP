@@ -6,7 +6,7 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 16:23:40 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/08 17:18:00 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/25 10:57:24 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ Dog::~Dog(void)
 
 void	Dog::makeSound(void) const
 {
-	std::cout << "* Bark *" << std::endl;
+	std::cout << "* Barks *" << std::endl;
 	return ;
 }

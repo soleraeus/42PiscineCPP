@@ -6,7 +6,7 @@
 #    By: bdetune <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/22 13:18:57 by bdetune           #+#    #+#              #
-#    Updated: 2022/07/11 13:22:07 by bdetune          ###   ########.fr        #
+#    Updated: 2022/07/25 11:52:12 by bdetune          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ INC=  AMateria.hpp Character.hpp Cure.hpp Ice.hpp ICharacter.hpp IMateriaSource.
 OBJS:= $(SRCS:.cpp=.o)
 
 CPP= c++
-CPPFLAGS= -Wall -Wextra -Werror -Wno-shadow -std=c++98
+CPPFLAGS= -Wall -Wextra -Werror -Wshadow -std=c++98
 
 ${NAME}:	$(OBJS) $(INC)
 			$(CPP) $(CPPFLAGS) -o $(NAME) $(OBJS)

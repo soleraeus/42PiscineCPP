@@ -6,7 +6,7 @@
 #    By: bdetune <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/22 13:18:57 by bdetune           #+#    #+#              #
-#    Updated: 2022/07/08 17:28:37 by bdetune          ###   ########.fr        #
+#    Updated: 2022/07/25 10:56:47 by bdetune          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ INC=  Animal.hpp Dog.hpp Cat.hpp WrongAnimal.hpp WrongCat.hpp
 OBJS:= $(SRCS:.cpp=.o)
 
 CPP= c++
-CPPFLAGS= -Wall -Wextra -Werror -Wno-shadow -std=c++98
+CPPFLAGS= -Wall -Wextra -Werror -Wshadow -std=c++98
 
 ${NAME}:	$(OBJS) $(INC)
 			$(CPP) $(CPPFLAGS) -o $(NAME) $(OBJS)

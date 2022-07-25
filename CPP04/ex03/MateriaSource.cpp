@@ -6,7 +6,7 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 12:25:55 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/11 13:44:58 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/25 11:51:18 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ MateriaSource&	MateriaSource::operator=(MateriaSource const & rhs)
 {
 	int	idx = rhs.getNbMaterias();
 
+	for (int i = 0 ; i < this->_nbMaterias; i++)
+	{
+		delete this->_materias[i];
+	}
 	for (int i = 0; i < idx; i++)
 	{
 		this->_materias[i] = rhs._materias[i]->clone();
