@@ -6,11 +6,17 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 13:25:36 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/13 14:53:13 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/27 16:26:39 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
+
+ShrubberyCreationForm::ShrubberyCreationForm(void): Form(std::string("Shrubbery Creation"), 145, 137)
+{
+	this->_target = std::string("Anonymous");
+	return ;
+}
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string const & target): Form(std::string("Shrubbery Creation"), 145, 137)
 {
@@ -34,6 +40,8 @@ ShrubberyCreationForm::~ShrubberyCreationForm(void)
 
 ShrubberyCreationForm & ShrubberyCreationForm::operator=(ShrubberyCreationForm const & rhs)
 {
+	if (this == &rhs)
+		return (*this);
 	if (rhs.getSigned())
 	{
 		this->beSigned(Bureaucrat(std::string("Placeholder"), 1));
@@ -50,7 +58,7 @@ void	ShrubberyCreationForm::act(void) const
 	out.open(target.data(), std::fstream::out | std::fstream::trunc);
 	if (out.fail())
 	{
-		std::cerr << "Error while opening file " << target << ", cannot create bush";
+		std::cerr << "Error while opening file " << target << ", cannot create bush" << std::endl;
 		return ;
 	}
 	out << "            ,@@@@@@@,             " << std::endl;

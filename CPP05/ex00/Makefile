@@ -6,7 +6,7 @@
 #    By: bdetune <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/22 13:18:57 by bdetune           #+#    #+#              #
-#    Updated: 2022/07/12 11:19:45 by bdetune          ###   ########.fr        #
+#    Updated: 2022/07/26 13:14:55 by bdetune          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ INC=  Bureaucrat.hpp
 OBJS:= $(SRCS:.cpp=.o)
 
 CPP= c++
-CPPFLAGS= -Wall -Wextra -Werror -Wno-shadow -std=c++98
+CPPFLAGS= -Wall -Wextra -Werror -Wshadow -std=c++98
 
 ${NAME}:	$(OBJS) $(INC)
 			$(CPP) $(CPPFLAGS) -o $(NAME) $(OBJS)

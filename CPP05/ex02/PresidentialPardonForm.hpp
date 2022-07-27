@@ -6,7 +6,7 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 13:21:43 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/13 13:59:46 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/27 14:24:02 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 class	PresidentialPardonForm: public Form
 {
 	public :
+		PresidentialPardonForm(void);
 		PresidentialPardonForm(std::string const & target);
 		PresidentialPardonForm(PresidentialPardonForm const & src);
 		virtual ~PresidentialPardonForm(void);

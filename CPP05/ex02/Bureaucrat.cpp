@@ -6,11 +6,16 @@
 /*   By: bdetune <bdetune@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 19:49:46 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/13 15:07:06 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/27 14:25:54 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+
+Bureaucrat::Bureaucrat(void): _name(std::string("Anonymous")), _grade(150)
+{
+	return;
+}
 
 Bureaucrat::Bureaucrat(std::string const & name, int grade): _name(name)
 {
@@ -35,6 +40,8 @@ Bureaucrat::~Bureaucrat(void)
 
 Bureaucrat& Bureaucrat::operator=(Bureaucrat const & rhs)
 {
+	if (this == &rhs)
+		return (*this);
 	this->_grade = rhs.getGrade();
 	std::cerr << "Cannot assign new name to bureaucrat " << this->_name << " changing only grade" << std::endl;
 	return (*this);
@@ -88,7 +95,7 @@ void	Bureaucrat::executeForm(Form const & form)
 	}
 	catch (std::exception const & e)
 	{
-		std::cerr << "Error while executing " << form << " by " << *this << " - " << e.what() << std::endl;
+		std::cerr << "Error while executing " << form.getName() << " by " << *this << " - " << e.what() << std::endl;
 	}
 }
 

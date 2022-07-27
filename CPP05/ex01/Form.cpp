@@ -6,11 +6,16 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 11:32:42 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/12 12:06:54 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/27 11:59:11 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
+
+Form::Form(void): _name(std::string("Generic form")), _signed(false), _signGrade(1), _execGrade(1)
+{
+	return ;
+}
 
 Form::Form(std::string const & name, int const signGrade, int const execGrade): _name(name), _signed(false), _signGrade(signGrade), _execGrade(execGrade)
 {
@@ -33,6 +38,8 @@ Form::~Form(void)
 
 Form&	Form::operator=(Form const & rhs)
 {
+	if (this == &rhs)
+		return (*this);
 	this->_signed = rhs.getSigned();
 	std::cerr << "Cannot change const variables name, signGrade and execGrade, only copying signing status" << std::endl;
 	return (*this);

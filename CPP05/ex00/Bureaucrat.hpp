@@ -6,7 +6,7 @@
 /*   By: bdetune <bdetune@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 19:38:43 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/11 20:18:43 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/26 13:11:19 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 class	Bureaucrat
 {
 	public :
+		Bureaucrat(void);
 		Bureaucrat(std::string const & name, int grade);
 		Bureaucrat(Bureaucrat const & src);
 		~Bureaucrat(void);

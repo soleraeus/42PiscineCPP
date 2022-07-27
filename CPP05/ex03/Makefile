@@ -6,7 +6,7 @@
 #    By: bdetune <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/22 13:18:57 by bdetune           #+#    #+#              #
-#    Updated: 2022/07/13 15:43:37 by bdetune          ###   ########.fr        #
+#    Updated: 2022/07/27 16:35:55 by bdetune          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ INC=  Bureaucrat.hpp Form.hpp PresidentialPardonForm.hpp RobotomyRequestForm.hpp
 OBJS:= $(SRCS:.cpp=.o)
 
 CPP= c++
-CPPFLAGS= -Wall -Wextra -Werror -Wno-shadow -std=c++98
+CPPFLAGS= -Wall -Wextra -Werror -Wshadow -std=c++98
 
 ${NAME}:	$(OBJS) $(INC)
 			$(CPP) $(CPPFLAGS) -o $(NAME) $(OBJS)

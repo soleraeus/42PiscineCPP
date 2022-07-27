@@ -6,7 +6,7 @@
 /*   By: bdetune <bdetune@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 19:38:43 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/13 13:46:13 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/27 14:16:50 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ class	Form;
 class	Bureaucrat
 {
 	public :
+		Bureaucrat(void);
 		Bureaucrat(std::string const & name, int grade);
 		Bureaucrat(Bureaucrat const & src);
 		~Bureaucrat(void);

@@ -6,7 +6,7 @@
 /*   By: bdetune <bdetune@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 20:02:05 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/13 14:56:11 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/27 16:28:02 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 
 void	createAndSign(Bureaucrat * myBureaucrat)
 {
+//	Form					test; //Does not compile
 	Form	*myForm;
 	PresidentialPardonForm	pardon(std::string("Emily"));
 	PresidentialPardonForm	pardon2(std::string("Jack"));
+	PresidentialPardonForm	pardon3;
 	RobotomyRequestForm		robotomy(std::string("Bender"));
 	ShrubberyCreationForm	bush(std::string("Jonas"));
-
-	(void) myBureaucrat;
 
 	try
 	{
@@ -37,6 +37,9 @@ void	createAndSign(Bureaucrat * myBureaucrat)
 	if (myForm != NULL)
 	{
 		myBureaucrat->signForm(*myForm);
+		myBureaucrat->executeForm(*myForm);
+		Bureaucrat	Emile(std::string("Emile"), 1);
+		Emile.executeForm(*myForm);
 		delete myForm;
 	}
 	myBureaucrat->signForm(pardon);
@@ -56,6 +59,11 @@ void	createAndSign(Bureaucrat * myBureaucrat)
 	myBureaucrat->signForm(bush);
 	myBureaucrat->executeForm(bush);
 	myBureaucrat->executeForm(bush);
+	myBureaucrat->executeForm(pardon3);
+	myBureaucrat->signForm(pardon3);
+	myBureaucrat->executeForm(pardon3);
+	pardon3 = pardon2;
+	myBureaucrat->executeForm(pardon3);
 }
 
 int main(void)

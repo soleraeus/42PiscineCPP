@@ -6,7 +6,7 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 11:21:59 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/13 13:50:37 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/27 16:15:06 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ class	Bureaucrat;
 class	Form
 {
 	public :
+		Form(void);
 		Form(std::string const & name, int const signGrade, int const execGrade);
 		Form(Form const & src);
 		virtual	~Form(void);

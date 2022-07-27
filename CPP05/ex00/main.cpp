@@ -6,7 +6,7 @@
 /*   By: bdetune <bdetune@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 20:02:05 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/11 20:24:32 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/26 13:16:49 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,20 +53,9 @@ int main(void)
 		judas.promote();
 		std::cout << judas << std::endl;
 	}
-	catch (Bureaucrat::GradeTooHighException & e)
-	{
-		std::cerr << "Grade Too High Exception: " << e.what() << std::endl;
-	}
-	catch (Bureaucrat::GradeTooLowException & e)
-	{
-		std::cerr << "Grade Too Low Exception: " << e.what() << std::endl;
-	}
 	catch (std::exception & e)
 	{
-		std::cerr << "Exception while creating new Bureaucrat: " << e.what() << std::endl;
+		std::cerr << "Exception thrown on Bureaucrat Judas: " << e.what() << std::endl;
 	}
-
-
-
 	return (0);
 }
