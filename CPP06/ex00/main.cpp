@@ -6,7 +6,7 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:28:04 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/19 12:40:17 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/27 19:56:28 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,18 @@ int	handle_float(std::string param)
 		std::cout << "int:    impossible" << std::endl;
 	else
 		std::cout << "int:    " << static_cast<int>(base) << std::endl;
+	if (std::strtof("inff", NULL) == base)
+	{
+		std::cout << "float:  inff" << std::endl;
+		std::cout << "double: inf" << std::endl;
+		return (0);
+	}
+	else if (std::strtof("-inff", NULL) == base)
+	{
+		std::cout << "float:  -inff" << std::endl;
+		std::cout << "double: -inf" << std::endl;
+		return (0);
+	}
 	std::cout << "float:  " << base << "f" << std::endl;
 	std::cout << "double: " << static_cast<double>(base) << std::endl;
 	return (0);
@@ -125,7 +137,19 @@ int	handle_double(std::string param)
 		std::cout << "int:    impossible" << std::endl;
 	else
 		std::cout << "int:    " << static_cast<int>(base) << std::endl;
-	if (static_cast<double>(std::numeric_limits<float>::max()) < base
+	if (std::strtod("inf", NULL) == base)
+	{
+		std::cout << "float:  inff" << std::endl;
+		std::cout << "double: inf" << std::endl;
+		return (0);
+	}
+	else if (std::strtod("-inf", NULL) == base)
+	{
+		std::cout << "float:  -inff" << std::endl;
+		std::cout << "double: -inf" << std::endl;
+		return (0);
+	}
+	else if (static_cast<double>(std::numeric_limits<float>::max()) < base
 		|| static_cast<double>(-std::numeric_limits<float>::max()) > base)
 		std::cout << "float:  impossible" << std::endl;
 	else
@@ -181,6 +205,14 @@ int	handle_numbers(std::string param)
 		std::cout << "double: +inf" << std::endl;
 		return (0);	
 	}
+	if (param == std::string("inf") || param == std::string("inff"))
+	{
+		std::cout << "char:   impossible" << std::endl;
+		std::cout << "int:    impossible" << std::endl;
+		std::cout << "float:  inff" << std::endl;
+		std::cout << "double: inf" << std::endl;
+		return (0);	
+	}
 	if (param == std::string("nan") || param == std::string("nanf"))
 	{
 		std::cout << "char:   impossible" << std::endl;
@@ -189,20 +221,12 @@ int	handle_numbers(std::string param)
 		std::cout << "double: nan" << std::endl;
 		return (0);	
 	}
-	try
-	{
-		if (param[param.length() - 1] == 'f')
-			return (handle_float(param));
-		else if (param.find_first_of(".") != std::string::npos)
-			return (handle_double(param));
-		else
-			return (handle_int(param));
-	}
-	catch (std::exception const & e)
-	{
-		std::cerr << "Improper formatting of argument passed, exception raised: " << e.what() << std::endl;
-		return (1);
-	}
+	if (param[param.length() - 1] == 'f')
+		return (handle_float(param));
+	else if (param.find_first_of(".") != std::string::npos)
+		return (handle_double(param));
+	else
+		return (handle_int(param));
 	return (0);
 }
 
@@ -216,7 +240,7 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	param = av[1];
-	std::cout  << std::fixed << std::setprecision(1);
+	std::cout << std::fixed << std::setprecision(1);
 	if (param.length() == 1)
 	{
 		if (!std::isdigit(param[0]))
