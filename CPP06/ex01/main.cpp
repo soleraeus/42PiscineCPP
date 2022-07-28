@@ -6,7 +6,7 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 12:56:04 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/19 13:11:34 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/28 11:42:45 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,8 @@
 #include <stdint.h>
 #include "Data.hpp"
 
-uintptr_t	serialize(Data* ptr)
-{
-	return (reinterpret_cast<uintptr_t>(ptr));
-}
-
-Data*	deserialize(uintptr_t raw)
-{
-	return (reinterpret_cast<Data*>(raw));
-}
+uintptr_t	serialize(Data* ptr);
+Data*		deserialize(uintptr_t raw);
 
 int	main(void)
 {

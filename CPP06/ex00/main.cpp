@@ -6,7 +6,7 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:28:04 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/27 19:56:28 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/28 11:35:59 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <cmath>
 #include <string>
 #include <cstdlib>
+#include <sstream>
 
 void	print_char(char c)
 {
@@ -31,8 +32,8 @@ int	handle_char(char param)
 {
 	print_char(param);
 	std::cout << "int:    " << static_cast<int>(param) << std::endl;
-	std::cout << "float:  "  <<static_cast<float>(param) << "f" << std::endl;
-	std::cout << "double: " << static_cast<double>(param) << std::endl;
+	std::cout << "float:  "  <<static_cast<float>(param) << ".0f" << std::endl;
+	std::cout << "double: " << static_cast<double>(param) << ".0" << std::endl;
 	return (0);
 }
 
@@ -90,8 +91,47 @@ int	handle_float(std::string param)
 		std::cout << "double: -inf" << std::endl;
 		return (0);
 	}
-	std::cout << "float:  " << base << "f" << std::endl;
-	std::cout << "double: " << static_cast<double>(base) << std::endl;
+
+	std::ostringstream	oss1;
+	std::string			fRep;
+	oss1 << std::fixed << std::setprecision(20);
+	oss1 << base;
+	fRep = oss1.str();
+	std::size_t	pos1 = fRep.find_last_of(".");
+	if (pos1 != std::string::npos)
+	{
+		std::size_t	pos2 = fRep.find_last_not_of("0");
+		if (pos2 != std::string::npos)
+		{
+			if (pos2 > pos1)
+				fRep.erase(pos2+1);
+			else
+				fRep.erase(pos1+2);
+		}
+		std::cout << "float:  " << fRep << "f" << std::endl;
+	}
+	else
+		std::cout << "float:  " << base << ".0f" << std::endl;
+	std::ostringstream	oss2;
+	std::string			dRep;
+	oss2 << std::fixed << std::setprecision(20);
+	oss2 << static_cast<double>(base);
+	dRep = oss2.str();
+	pos1 = dRep.find_last_of(".");
+	if (pos1 != std::string::npos)
+	{
+		std::size_t	pos2 = dRep.find_last_not_of("0");
+		if (pos2 != std::string::npos)
+		{
+			if (pos2 > pos1)
+				dRep.erase(pos2+1);
+			else
+				dRep.erase(pos1+2);
+		}
+		std::cout << "double: " << dRep << std::endl;
+	}
+	else
+		std::cout << "double: " << dRep << ".0" << std::endl;
 	return (0);
 }
 
@@ -153,8 +193,48 @@ int	handle_double(std::string param)
 		|| static_cast<double>(-std::numeric_limits<float>::max()) > base)
 		std::cout << "float:  impossible" << std::endl;
 	else
-		std::cout << "float:  " << static_cast<float>(base) << "f" << std::endl;
-	std::cout << "double: " << base << std::endl;
+	{
+		std::ostringstream	oss1;
+		std::string			fRep;
+		oss1 << std::fixed << std::setprecision(20);
+		oss1 << static_cast<float>(base);
+		fRep = oss1.str();
+		std::size_t	pos1 = fRep.find_last_of(".");
+		if (pos1 != std::string::npos)
+		{
+			std::size_t	pos2 = fRep.find_last_not_of("0");
+			if (pos2 != std::string::npos)
+			{
+				if (pos2 > pos1)
+					fRep.erase(pos2+1);
+				else
+					fRep.erase(pos1+2);
+			}
+			std::cout << "float:  " << fRep << "f" << std::endl;
+		}
+		else
+			std::cout << "float:  " << base << ".0f" << std::endl;
+	}
+	std::ostringstream	oss2;
+	std::string			dRep;
+	oss2 << std::fixed << std::setprecision(20);
+	oss2 << base;
+	dRep = oss2.str();
+	std::size_t	pos1 = dRep.find_last_of(".");
+	if (pos1 != std::string::npos)
+	{
+		std::size_t	pos2 = dRep.find_last_not_of("0");
+		if (pos2 != std::string::npos)
+		{
+			if (pos2 > pos1)
+				dRep.erase(pos2+1);
+			else
+				dRep.erase(pos1+2);
+		}
+		std::cout << "double: " << dRep << std::endl;
+	}
+	else
+		std::cout << "double: " << dRep << ".0" << std::endl;
 	return (0);
 }
 
@@ -182,13 +262,18 @@ int	handle_int(std::string param)
 	else
 		print_char(static_cast<char>(base));
 	std::cout << "int:    " << base << std::endl;
-	std::cout << "float:  " << static_cast<float>(base) << "f" << std::endl;
-	std::cout << "double: " << static_cast<double>(base) << std::endl;
+	std::cout << "float:  " << static_cast<float>(base) << ".0f" << std::endl;
+	std::cout << "double: " << static_cast<double>(base) << ".0" << std::endl;
 	return (0);
 }
 
-int	handle_numbers(std::string param)
+int	handle_numbers(std::string paramArg)
 {
+	std::string	param;
+	std::locale	loc;
+
+	for (std::string::size_type j = 0; j < paramArg.length(); j++)
+		param += std::tolower(paramArg[j], loc);
 	if (param == std::string("-inff") || param == std::string("-inf"))
 	{
 		std::cout << "char:   impossible" << std::endl;
@@ -221,10 +306,13 @@ int	handle_numbers(std::string param)
 		std::cout << "double: nan" << std::endl;
 		return (0);	
 	}
-	if (param[param.length() - 1] == 'f')
-		return (handle_float(param));
-	else if (param.find_first_of(".") != std::string::npos)
-		return (handle_double(param));
+	if (param.find_first_of(".") != std::string::npos)
+	{
+		if (param[param.length() - 1] == 'f')
+			return (handle_float(param));
+		else
+			return (handle_double(param));
+	}
 	else
 		return (handle_int(param));
 	return (0);
@@ -240,7 +328,7 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	param = av[1];
-	std::cout << std::fixed << std::setprecision(1);
+
 	if (param.length() == 1)
 	{
 		if (!std::isdigit(param[0]))
