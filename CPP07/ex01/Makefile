@@ -6,13 +6,13 @@
 #    By: bdetune <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/22 13:18:57 by bdetune           #+#    #+#              #
-#    Updated: 2022/07/28 12:34:21 by bdetune          ###   ########.fr        #
+#    Updated: 2022/07/28 14:49:23 by bdetune          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME= iter
 
-INC= iter.hpp Fixed.hpp
+INC= iter.hpp Fixed.hpp shellColors.hpp
 SRCS= main.cpp Fixed.cpp
 
 OBJS:= $(SRCS:.cpp=.o)
