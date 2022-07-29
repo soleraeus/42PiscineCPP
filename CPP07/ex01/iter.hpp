@@ -6,17 +6,17 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 18:41:54 by bdetune           #+#    #+#             */
-/*   Updated: 2022/07/28 12:41:23 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/07/29 11:58:48 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ITER_HPP
 # define ITER_HPP
 
-template<typename T, typename U, typename V>
-void	iter(T array, U size, V function)
+template<typename T, typename U>
+void	iter(T array, std::size_t size, U function)
 {
-	for (U i = 0; i < size; i++)
+	for (std::size_t i = 0; i < size; i++)
 	{
 		try
 		{
