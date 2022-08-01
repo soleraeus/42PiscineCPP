@@ -69,6 +69,8 @@ Array<T>::~Array(void)
 template<typename T>
 Array<T> &	Array<T>::operator=(Array<T> const & rhs)
 {
+	if (this == &rhs)
+		return (*this);
 	if (this->_array)
 		delete [] this->_array;
 	this->_size = rhs._size;
