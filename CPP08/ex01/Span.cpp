@@ -6,7 +6,7 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 15:48:38 by bdetune           #+#    #+#             */
-/*   Updated: 2022/08/01 19:09:00 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/08/02 18:10:31 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,22 @@ Span::Span(void): _maxSize(0), _currentSize(0)
 	return ;
 }
 
-Span::Span(unsigned int const size): _maxSize(size), _currentSize(0)
+Span::Span(unsigned int const size): _maxSize(size), _currentSize(0), _list()
 {
 	return ;
 }
 
-Span::Span(Span const & src): _maxSize(src._maxSize), _currentSize(src._currentSize), _list(src._list)
+Span::Span(Span const & src): _maxSize(src._maxSize), _currentSize(0)
 {
+	try
+	{
+		this->_list = src._list;
+		this->_currentSize = src._currentSize;
+	}
+	catch (std::exception const & e)
+	{
+		std::cerr << "Error while copying list in copy constructor" << e.what() << std::endl;
+	}
 	return ;
 }
 
@@ -36,10 +45,17 @@ Span &	Span::operator=(Span const & rhs)
 {
 	if (this == &rhs)
 		return (*this);
-	this->_maxSize = rhs._maxSize;
-	this->_currentSize = rhs._currentSize;
-	this->_list = rhs._list;
-	return (*this);
+	try
+	{
+		this->_maxSize = rhs._maxSize;
+		this->_list = rhs._list;
+		this->_currentSize = rhs._currentSize;
+	}
+	catch (std::exception const & e)
+	{
+		std::cerr << "Error while copying list in assignation operator: " << e.what() << std::endl;
+	}
+		return (*this);
 }
 
 void	Span::addNumber(int const nb)
@@ -63,15 +79,36 @@ void	Span::addNumber(int const nb)
 
 unsigned int	Span::shortestSpan(void)
 {
+	long long	ret;
+
 	if (this->_currentSize <= 1)
 	{
 		std::string	what = "Span does not contain at least 2 elements";
 		throw std::range_error(what);
 	}
 	this->_list.sort();
-	std::list<long long>	tmp = this->_list;
-	std::adjacent_difference(this->_list.begin(), this->_list.end(), tmp.begin());
-	return (*std::min_element(++(tmp.begin()), tmp.end()));
+	try
+	{
+		std::list<long long>	tmp = this->_list;
+		std::adjacent_difference(this->_list.begin(), this->_list.end(), tmp.begin());
+		ret = *std::min_element(++(tmp.begin()), tmp.end());
+	}
+	catch (std::exception const & e)
+	{
+		(void) e;
+		long long	difference;
+		std::list<long long>::const_reverse_iterator	it = this->_list.rbegin();
+		std::list<long long>::const_reverse_iterator	ite = --(this->_list.rend());
+
+		ret = std::numeric_limits<unsigned int>::max();
+		while (it != ite)
+		{
+			difference = *it - *(++it);
+			if (difference < ret)
+				ret = difference;
+		}
+	}
+	return (ret);
 }
 
 unsigned int	Span::longestSpan(void) const

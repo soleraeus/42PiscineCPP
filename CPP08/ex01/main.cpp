@@ -6,16 +6,17 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 16:17:02 by bdetune           #+#    #+#             */
-/*   Updated: 2022/08/02 11:44:45 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/08/02 18:27:09 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "shellColors.hpp"
 #include "Span.hpp"
 
 int main()
 {
-	Span sp = Span(20);
-	Span sp2	= Span(100000);
+	Span sp = Span(10);
+	Span sp2	= Span(1000000);
 	std::list<int>	a(5, 98);
 
 	sp.addNumber(6);
@@ -27,23 +28,29 @@ int main()
 	sp.printList();
 	std::cout << sp.shortestSpan() << std::endl;
 	std::cout << sp.longestSpan() << std::endl;
-	int i = -1000;
+	int i = 0;
 	try
 	{
 		while (true)
 		{
 			sp2.addNumber(i);
-			i += 2;
+			i += 3;
 		}
 	}
 	catch (std::exception const & e)
 	{
-		std::cerr << "Caught exception: " << e.what() << std::endl;
+		std::cerr << RED << "Caught exception: " << e.what() << OFF << std::endl;
 	}
-//	sp2.printList();
 	std::cout << sp2.shortestSpan() << std::endl;
 	std::cout << sp2.longestSpan() << std::endl;
-	sp.addRange(a.begin(), a.end());
+	try
+	{
+		sp.addRange(a.begin(), a.end());
+	}
+	catch (std::exception const & e)
+	{
+		std::cerr << "Error while adding range to Span: " << e.what() << std::endl;
+	}
 	sp.printList();
 	std::cout << sp.longestSpan() << std::endl;
 	std::cout << sp.shortestSpan() << std::endl;
