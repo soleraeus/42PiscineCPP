@@ -6,7 +6,7 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 15:42:51 by bdetune           #+#    #+#             */
-/*   Updated: 2022/08/01 19:06:11 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/08/02 19:32:07 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,26 @@ class	Span
 		template<class InputIterator>
 		void			addRange(InputIterator begin, InputIterator end)
 		{
-			if ((std::distance(begin, end) + this->_currentSize) > this->_maxSize)
+			if ((std::distance(begin, end) + this->_list.size()) > this->_maxSize)
 			{
 				std::string	what = "Adding range of iterators would go over the span limits";
 				throw std::out_of_range(what);
 			}
-			this->_list.insert(this->_list.end(), begin, end);
+			try
+			{
+				this->_list.insert(this->_list.end(), begin, end);
+			}
+			catch (std::exception const & e)
+			{
+				std::cerr << "Could not add range to Span: " << e.what() << std::endl;
+			}
 		}
-		void			printList(void) const;
+		void			print(void) const;
 		unsigned int	shortestSpan(void);
 		unsigned int	longestSpan(void) const;
 
 	private:
 		unsigned int			_maxSize;
-		unsigned int			_currentSize;
 		std::list<long long>	_list;
 };
 

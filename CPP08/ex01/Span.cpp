@@ -6,28 +6,27 @@
 /*   By: bdetune <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 15:48:38 by bdetune           #+#    #+#             */
-/*   Updated: 2022/08/02 18:10:31 by bdetune          ###   ########.fr       */
+/*   Updated: 2022/08/02 19:46:15 by bdetune          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
-Span::Span(void): _maxSize(0), _currentSize(0)
+Span::Span(void): _maxSize(0)
 {
 	return ;
 }
 
-Span::Span(unsigned int const size): _maxSize(size), _currentSize(0), _list()
+Span::Span(unsigned int const size): _maxSize(size), _list()
 {
 	return ;
 }
 
-Span::Span(Span const & src): _maxSize(src._maxSize), _currentSize(0)
+Span::Span(Span const & src): _maxSize(src._maxSize)
 {
 	try
 	{
 		this->_list = src._list;
-		this->_currentSize = src._currentSize;
 	}
 	catch (std::exception const & e)
 	{
@@ -49,7 +48,6 @@ Span &	Span::operator=(Span const & rhs)
 	{
 		this->_maxSize = rhs._maxSize;
 		this->_list = rhs._list;
-		this->_currentSize = rhs._currentSize;
 	}
 	catch (std::exception const & e)
 	{
@@ -60,7 +58,7 @@ Span &	Span::operator=(Span const & rhs)
 
 void	Span::addNumber(int const nb)
 {
-	if (this->_currentSize == this->_maxSize)
+	if (this->_list.size() == this->_maxSize)
 	{
 		std::string	what = "Span is already full";
 		throw std::out_of_range(what);
@@ -68,7 +66,6 @@ void	Span::addNumber(int const nb)
 	try
 	{
 		this->_list.push_back(nb);
-		this->_currentSize += 1;
 	}
 	catch (std::exception const & e)
 	{
@@ -81,7 +78,7 @@ unsigned int	Span::shortestSpan(void)
 {
 	long long	ret;
 
-	if (this->_currentSize <= 1)
+	if (this->_list.size() <= 1)
 	{
 		std::string	what = "Span does not contain at least 2 elements";
 		throw std::range_error(what);
@@ -116,7 +113,7 @@ unsigned int	Span::longestSpan(void) const
 	std::list<long long>::const_iterator	min;
 	std::list<long long>::const_iterator	max;
 
-	if (this->_currentSize <= 1)
+	if (this->_list.size() <= 1)
 	{
 		std::string	what = "Span does not contain at least 2 elements";
 		throw std::range_error(what);
@@ -126,8 +123,10 @@ unsigned int	Span::longestSpan(void) const
 	return (*max - *min);
 }
 
-void	Span::printList(void) const
+void	Span::print(void) const
 {
+	if (this->_list.empty())
+		return ;
 	for (std::list<long long>::const_iterator i = this->_list.begin(); i != this->_list.end(); ++i)
 		std::cout << *i << " ";
 	std::cout << std::endl;
